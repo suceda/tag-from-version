@@ -1,5 +1,5 @@
-import * as fs from 'fs'
 import * as core from '@actions/core'
+import * as fs from 'fs'
 
 const getPackageVersion = (): string => {
   const data = JSON.parse(fs.readFileSync('package.json', {encoding: 'utf-8'}))
@@ -17,6 +17,8 @@ async function run(): Promise<void> {
     core.debug(new Date().toTimeString())
 
     core.setOutput('time', new Date().toTimeString())
+
+    core.setOutput('tag', getPackageVersion())
   } catch (error) {
     core.setFailed(error.message)
   }

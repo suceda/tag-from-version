@@ -347,8 +347,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = __importStar(__webpack_require__(747));
 const core = __importStar(__webpack_require__(470));
+const fs = __importStar(__webpack_require__(747));
 const getPackageVersion = () => {
     const data = JSON.parse(fs.readFileSync('package.json', { encoding: 'utf-8' }));
     return data.version;
@@ -361,6 +361,7 @@ function run() {
             core.info(`package version: ${getPackageVersion()}`);
             core.debug(new Date().toTimeString());
             core.setOutput('time', new Date().toTimeString());
+            core.setOutput('tag', getPackageVersion());
         }
         catch (error) {
             core.setFailed(error.message);
